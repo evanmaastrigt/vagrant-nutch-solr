@@ -1,0 +1,13 @@
+---
+- hosts: all
+  user: vagrant
+  sudo: True
+  roles:
+#   - java-7
+#   - nutch
+   - nutch-tutorial
+#   - grlee.apache_ubuntu
+#   - geerlingguy.composer
+#   - mbasanta.pip
+#   - lesmyrmidons.mongodb
+#   - ansible-role-phpmyadmin

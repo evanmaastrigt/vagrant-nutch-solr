@@ -1,0 +1,20 @@
+---
+
+- name: Create bin folder
+  file: path=/home/vagrant/bin state=directory mode=0777
+
+- name: Download Nutch installer
+  get_url: dest=/home/vagrant/bin/apache-nutch-1.9-bin.tar.gz url=http://apache.hippo.nl/nutch/1.9/apache-nutch-1.9-bin.tar.gz
+
+- name: Unpack installer
+  command: tar -xzf apache-nutch-1.9-bin.tar.gz chdir=/home/vagrant/bin
+
+- name: Set permissions on executable
+  command: chmod +x bin/nutch chdir=/home/vagrant/bin/apache-nutch-1.9
+
+- name: Export JAVA_HOME
+  lineinfile: dest=/home/vagrant/.bashrc line='export JAVA_HOME=/usr/lib/jvm/java-7-oracle/'
+
+- name: Add machine name to hosts
+  sudo: yes
+  lineinfile: dest=/etc/hosts line='127.0.0.1 localhost vagrant-ubuntu-trusty-64'

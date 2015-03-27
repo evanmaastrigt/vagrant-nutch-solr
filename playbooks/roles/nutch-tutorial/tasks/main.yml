@@ -1,0 +1,29 @@
+---
+
+- name: Make nutch folder world-writable
+  sudo: yes
+  command: chmod 0777 apache-nutch-1.9 chdir=/home/vagrant/bin
+
+- name: Create a Url directory
+  file: path=/home/vagrant/bin/apache-nutch-1.9/urls state=directory mode=0777
+
+- name: Create a Url seed list
+  command: touch /home/vagrant/bin/apache-nutch-1.9/urls/seed.txt
+
+- name: Set http agent name for crawler
+  template: src=nutch-site.xml.j2 dest=/home/vagrant/bin/apache-nutch-1.9/conf/nutch-site.xml owner=root group=root mode=664
+
+- name: Download DMOZ open directory
+  command: wget http://rdf.dmoz.org/rdf/content.rdf.u8.gz chdir=/home/vagrant/bin/apache-nutch-1.9
+
+- name: Gunzip DMOZ open directory
+  command: gunzip content.rdf.u8.gz chdir=/home/vagrant/bin/apache-nutch-1.9
+
+- name: Make dmoz directory
+  file: path=/home/vagrant/bin/apache-nutch-1.9/dmoz state=directory mode=0777
+
+- name: Make log directory
+  file: path=/home/vagrant/bin/apache-nutch-1.9/log state=directory mode=0777
+
+- name: Make crawl directory
+  file: path=/home/vagrant/bin/apache-nutch-1.9/crawl state=directory mode=0777
