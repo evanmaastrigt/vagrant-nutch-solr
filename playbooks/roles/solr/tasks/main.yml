@@ -1,0 +1,10 @@
+---
+
+- name: Download Solr binary
+  get_url: dest=/home/vagrant/bin/solr-4.10.4.tgz url=http://apache.hippo.nl/lucene/solr/4.10.4/solr-4.10.4.tgz
+
+- name: Untar Solar binary
+  command: tar -xzf solr-4.10.4.tgz chdir=/home/vagrant/bin
+
+#- name: Start Solr
+#  command: java -jar start.jar chdir=/home/vagrant/bin/solr-4.10.4/example
