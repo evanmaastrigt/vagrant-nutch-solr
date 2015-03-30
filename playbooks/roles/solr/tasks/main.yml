@@ -1,10 +1,13 @@
 ---
 
-- name: Download Solr binary
-  get_url: dest=/home/vagrant/bin/solr-4.10.4.tgz url=http://apache.hippo.nl/lucene/solr/4.10.4/solr-4.10.4.tgz
+- name: generate locales
+  command: locale-gen en_US en_US.UTF-8 nl_NL.UTF-8
 
-- name: Untar Solar binary
-  command: tar -xzf solr-4.10.4.tgz chdir=/home/vagrant/bin
+- name: reconfigure locales
+  command: dpkg-reconfigure locales
 
-#- name: Start Solr
-#  command: java -jar start.jar chdir=/home/vagrant/bin/solr-4.10.4/example
+- name: Export JAVA_HOME for root user
+  lineinfile: dest=/root/.bashrc line='export JAVA_HOME=/usr/lib/jvm/java-7-oracle/'
+
+- name: Install Solr package
+  apt: name=solr-tomcat state=present

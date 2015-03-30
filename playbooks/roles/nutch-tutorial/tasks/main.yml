@@ -13,11 +13,11 @@
 - name: Set http agent name for crawler
   template: src=nutch-site.xml.j2 dest=/home/vagrant/bin/apache-nutch-1.9/conf/nutch-site.xml owner=root group=root mode=664
 
-- name: Download DMOZ open directory
-  command: wget http://rdf.dmoz.org/rdf/content.rdf.u8.gz chdir=/home/vagrant/bin/apache-nutch-1.9
-
-- name: Gunzip DMOZ open directory
-  command: gunzip content.rdf.u8.gz chdir=/home/vagrant/bin/apache-nutch-1.9
+#- name: Download DMOZ open directory
+#  command: wget http://rdf.dmoz.org/rdf/content.rdf.u8.gz chdir=/home/vagrant/bin/apache-nutch-1.9
+#
+#- name: Gunzip DMOZ open directory
+#  command: gunzip content.rdf.u8.gz chdir=/home/vagrant/bin/apache-nutch-1.9
 
 - name: Make dmoz directory
   file: path=/home/vagrant/bin/apache-nutch-1.9/dmoz state=directory mode=0777
