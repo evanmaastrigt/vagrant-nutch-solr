@@ -9,5 +9,14 @@
 - name: Export JAVA_HOME for root user
   lineinfile: dest=/root/.bashrc line='export JAVA_HOME=/usr/lib/jvm/java-7-oracle/'
 
+- name: Installing Java openjdk 7
+  apt: name=install openjdk-7-jdk state=present
+
+- name: Make /usr/java directory
+  command: mkdir /usr/java
+
+- name: Symlink to java home
+  command: ln -s /usr/lib/jvm/java-7-openjdk-amd64 /usr/java/default
+
 - name: Install Solr package
   apt: name=solr-tomcat state=present
